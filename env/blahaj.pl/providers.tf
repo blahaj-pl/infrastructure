@@ -5,6 +5,20 @@ provider "scaleway" {
   secret_key = var.scaleway_secret_key
 }
 
+resource "scaleway_secret" "desec_api_token" {
+  path = "/terraform/secrets/desec"
+  name = "api_token"
+}
+
+data "scaleway_secret_version" "desec_api_token" {
+  secret_id = scaleway_secret.desec_api_token.id
+  revision  = "latest"
+}
+
+provider "desec" {
+  api_token = base64decode(data.scaleway_secret_version.desec_api_token.data)
+}
+
 terraform {
   backend "s3" {
     bucket                      = "tfstate-eriuy4jm"
