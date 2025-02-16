@@ -1,3 +1,7 @@
+module "globals" {
+  source = "../../modules/globals"
+}
+
 variable "scaleway_access_key" {
   type      = string
   sensitive = true
