@@ -1,10 +1,54 @@
-module "subdomain_paste" {
-  source  = "../../modules/subdomain"
+module "blahajpl_apex" {
+  source = "../../modules/subdomain"
+
+  domain  = local.domain
+  subname = ""
+  records = {
+    AAAA = [module.globals.infra.instances.blavingad.addresses.ipv6]
+    A    = [module.globals.infra.instances.blavingad.addresses.ipv4]
+    CAA  = ["0 issue \"letsencrypt.org\""]
+    TXT  = ["google-site-verification=uo3KlLGcvX17NeS8La_8siSpDXFWtuI2FjifWKioaXI"]
+  }
+}
+
+module "blahajpl_www" {
+  source = "../../modules/subdomain"
+
+  domain  = local.domain
+  subname = "www"
+  records = {
+    CNAME = ["${local.domain}."]
+  }
+}
+
+module "blahajpl_paste" {
+  source = "../../modules/subdomain"
+
   domain  = local.domain
   subname = "paste"
   records = {
-    A    = ["94.16.120.239"]
-    AAAA = ["2a03:4000:21:215::1"]
-    TXT  = ["example 1", "example 2"]
+    AAAA = [module.globals.infra.instances.blavingad.addresses.ipv6]
+    A    = [module.globals.infra.instances.blavingad.addresses.ipv4]
+  }
+}
+
+module "blahajpl_gotosocial" {
+  source = "../../modules/subdomain"
+
+  domain  = local.domain
+  subname = "gts"
+  records = {
+    AAAA = [module.globals.infra.instances.blavingad.addresses.ipv6]
+    A    = [module.globals.infra.instances.blavingad.addresses.ipv4]
+  }
+}
+
+module "blahajpl__atproto" {
+  source = "../../modules/subdomain"
+
+  domain  = local.domain
+  subname = "_atproto"
+  records = {
+    TXT = ["did=did:plc:vqrh5fqhk2oe6mnqi76ngkbm"]
   }
 }
