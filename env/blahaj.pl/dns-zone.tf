@@ -52,3 +52,14 @@ module "blahajpl__atproto" {
     TXT = ["did=did:plc:vqrh5fqhk2oe6mnqi76ngkbm"]
   }
 }
+
+module "blahajpl_gh_org_verification" {
+  source = "../../modules/subdomain"
+
+  domain  = local.domain
+  subname = "_gh-blahaj-pl-o"
+  records = {
+    TXT = ["6cf7fcf69c"]
+  }
+}
+
