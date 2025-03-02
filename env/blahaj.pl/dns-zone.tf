@@ -4,8 +4,8 @@ module "blahajpl_apex" {
   domain  = local.domain
   subname = ""
   records = {
-    AAAA = [module.globals.infra.instances.blavingad.addresses.ipv6]
-    A    = [module.globals.infra.instances.blavingad.addresses.ipv4]
+    AAAA = [module.globals.infra.instances.jattelik.addresses.ipv6.primary.address]
+    A    = [module.globals.infra.instances.jattelik.addresses.ipv4.primary.address]
     CAA  = ["0 issue \"letsencrypt.org\""]
     TXT  = ["google-site-verification=uo3KlLGcvX17NeS8La_8siSpDXFWtuI2FjifWKioaXI"]
   }
@@ -27,8 +27,8 @@ module "blahajpl_paste" {
   domain  = local.domain
   subname = "paste"
   records = {
-    AAAA = [module.globals.infra.instances.blavingad.addresses.ipv6]
-    A    = [module.globals.infra.instances.blavingad.addresses.ipv4]
+    AAAA = [module.globals.infra.instances.jattelik.addresses.ipv6.primary.address]
+    A    = [module.globals.infra.instances.jattelik.addresses.ipv4.primary.address]
   }
 }
 
@@ -38,8 +38,8 @@ module "blahajpl_gotosocial" {
   domain  = local.domain
   subname = "gts"
   records = {
-    AAAA = [module.globals.infra.instances.blavingad.addresses.ipv6]
-    A    = [module.globals.infra.instances.blavingad.addresses.ipv4]
+    AAAA = [module.globals.infra.instances.jattelik.addresses.ipv6.primary.address]
+    A    = [module.globals.infra.instances.jattelik.addresses.ipv4.primary.address]
   }
 }
 
