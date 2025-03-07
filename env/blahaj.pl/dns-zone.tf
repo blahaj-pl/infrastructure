@@ -63,3 +63,13 @@ module "blahajpl_gh_org_verification" {
   }
 }
 
+module "blahajpl_rdns_jattelik" {
+  source = "../../modules/subdomain"
+
+  domain  = local.domain
+  subname = "jattelik.s"
+  records = {
+    AAAA = [module.globals.infra.instances.jattelik.addresses.ipv6.primary.address]
+    A    = [module.globals.infra.instances.jattelik.addresses.ipv4.primary.address]
+  }
+}
