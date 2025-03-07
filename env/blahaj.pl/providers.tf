@@ -1,6 +1,7 @@
 provider "scaleway" {
-  zone       = "fr-par-1"
+  project_id = "bb3e2264-5ab5-4dcc-964a-a65021e6bb15"
   region     = "fr-par"
+  zone       = "fr-par-1"
   access_key = var.scaleway_access_key
   secret_key = var.scaleway_secret_key
 }
